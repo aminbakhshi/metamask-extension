@@ -30,6 +30,7 @@ import {
   VIEW_QUOTE_ROUTE,
   CONFIRMATION_V_NEXT_ROUTE,
 } from '../../helpers/constants/routes';
+import Exchange from '../../components/app/exchange';
 
 const LEARN_MORE_URL =
   'https://metamask.zendesk.com/hc/en-us/articles/360045129011-Intro-to-MetaMask-v8-extension';
@@ -158,7 +159,6 @@ export default class Home extends PureComponent {
       threeBoxLastUpdated,
       threeBoxSynced,
     } = this.props;
-
     if (!prevState.closing && this.state.closing) {
       global.platform.closeCurrentWindow();
     }
@@ -400,7 +400,16 @@ export default class Home extends PureComponent {
               >
                 <TransactionList />
               </Tab>
+              <Tab
+                activeClassName="home__tab--active"
+                className="home__tab"
+                data-testid="home__activity-tab"
+                name={t('exchange')}
+              >
+                <Exchange />
+              </Tab>
             </Tabs>
+            
             <div className="home__support">
               {t('needHelp', [
                 <a
